@@ -764,7 +764,7 @@ def main():
 
         # 프로젝트 로드 버튼
         if st.session_state.loaded_json is not None:
-            if st.button("🚀 프로젝트 로드 및 계산", type="primary", use_container_width=True):
+            if st.button("🚀 프로젝트 로드 및 계산", type="primary", width="stretch"):
                 try:
                     loaded_project = load_project_data(st.session_state.loaded_json)
                     st.session_state.project_data = loaded_project
@@ -837,7 +837,7 @@ def main():
             st.info("📌 등록된 말뚝이 없습니다")
 
         if not st.session_state.project_loaded:
-            if st.button("➕ 새 말뚝 추가", type="primary", use_container_width=True):
+            if st.button("➕ 새 말뚝 추가", type="primary", width="stretch"):
                 st.session_state.adding_pile = True
                 st.session_state.pile_counter += 1
                 st.rerun()
@@ -864,13 +864,13 @@ def main():
                 data=json_data,
                 file_name=filename,
                 mime="application/json",
-                use_container_width=True
+                width="stretch"
             )
 
         # 새 프로젝트 시작 버튼 (로드된 프로젝트가 있을 때만)
         if st.session_state.project_loaded:
             st.markdown("---")
-            if st.button("🔄 새 프로젝트 시작", use_container_width=True):
+            if st.button("🔄 새 프로젝트 시작", width="stretch"):
                 st.session_state.project_data = None
                 st.session_state.loaded_json = None
                 st.session_state.project_loaded = False
@@ -994,7 +994,7 @@ def display_pile_form(project_name: str, fck: float, ec: float, unit_weight: flo
     col_btn1, col_btn2 = st.columns(2)
 
     with col_btn1:
-        if st.button("✓ 말뚝 추가", type="primary", use_container_width=True):
+        if st.button("✓ 말뚝 추가", type="primary", width="stretch"):
             new_pile = PileData(
                 id=str(uuid.uuid4()),
                 name=pile_name,
@@ -1027,7 +1027,7 @@ def display_pile_form(project_name: str, fck: float, ec: float, unit_weight: flo
             st.rerun()
 
     with col_btn2:
-        if st.button("✕ 취소", use_container_width=True):
+        if st.button("✕ 취소", width="stretch"):
             st.session_state.adding_pile = False
             st.rerun()
 
@@ -1093,7 +1093,7 @@ def display_pile_analysis(pile_data: PileData, fck: float, ec: float, unit_weigh
         {"구역": f"구역 {i+1}", "상단 (m)": f"{upper:.2f}", "하단 (m)": f"{lower:.2f}"}
         for i, (upper, lower) in enumerate(results['regions'])
     ])
-    st.dataframe(regions_df, use_container_width=True, hide_index=True)
+    st.dataframe(regions_df, hide_index=True)
 
     st.markdown("---")
 
@@ -1116,7 +1116,7 @@ def display_pile_analysis(pile_data: PileData, fck: float, ec: float, unit_weigh
             }
             for prop in boring.properties
         ])
-        st.dataframe(soil_df, use_container_width=True, hide_index=True)
+        st.dataframe(soil_df, hide_index=True)
 
 
 def display_comparison_view(project_data: ProjectData, fck: float, ec: float, unit_weight: float):
@@ -1143,7 +1143,7 @@ def display_comparison_view(project_data: ProjectData, fck: float, ec: float, un
 
     if comparison_data:
         comparison_df = pd.DataFrame(comparison_data)
-        st.dataframe(comparison_df, use_container_width=True, hide_index=True)
+        st.dataframe(comparison_df, hide_index=True)
     else:
         st.warning("⚠️ 계산 결과가 없습니다. 각 말뚝 탭을 확인하세요.")
 
@@ -1199,7 +1199,7 @@ def display_calculation_reports(project_data: ProjectData, fck: float, ec: float
             data=report,
             file_name=f"계산서_{selected_pile_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt",
             mime="text/plain",
-            use_container_width=True
+            width="stretch"
         )
 
 
