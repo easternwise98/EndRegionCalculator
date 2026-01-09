@@ -322,7 +322,7 @@ class Pile:
             moment_maximum_depth = 2.0 * self.dia
 
         moment_zero_elev = moment_maximum_depth + 3 * self.dia
-        return -1 * self.Dia, max(moment_zero_elev, 18 * 25.4)
+        return -1 * self.dia, max(moment_zero_elev, 18 * 25.4)
 
     def get_end_region_watered(self, boring: 'Boring') -> List[tuple]:
         moment_max_elev = max(boring.ground_elev, boring.scour_elev) + 2 * self.dia
