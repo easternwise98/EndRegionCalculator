@@ -329,7 +329,7 @@ class Pile:
         moment_zero_elev = moment_max_elev + 3 * self.dia
 
         top_end_region_start = 0
-        top_end_region_end = get_end_region_BDS2024(self.dia, moment_zero_elev)
+        top_end_region_end = get_end_region_BDS2024(self.dia, moment_max_elev)
         top_end_region = (top_end_region_start, top_end_region_end)
 
         bot_end_region_start = min(boring.ground_elev, boring.scour_elev)
